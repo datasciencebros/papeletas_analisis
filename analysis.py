@@ -15,12 +15,15 @@ def upload_to_db(file_name):
         ]
     db = connect_db()
     table = db['papeletas']
+    
     papeletas_in_db = get_papeletas(table)
+    papeletas_in_file = [i['papeleta'] for i in data]
 
+    papeletas_to_insert = set(papeletas_in_file) - set(papeletas_in_db)
     items_to_insert = [
-        i
-        for i in data
-        if i['papeleta'] not in papeletas_in_db
+        item
+        for item in data
+        if item['papeleta'] in papeletas_to_insert
     ]
 
     cleaned_items = [
