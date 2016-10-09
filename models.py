@@ -23,6 +23,8 @@ def connect_db():
         table.create_column("infraccion", sqlalchemy.String)
         table.create_column("infractor", sqlalchemy.String)
         table.create_column("propietario", sqlalchemy.String)
+        table.create_column("latitude", sqlalchemy.Float)
+        table.create_column("longitude", sqlalchemy.Float)
 
         table.create_index([
             'dni',

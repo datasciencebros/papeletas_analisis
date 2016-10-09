@@ -15,7 +15,7 @@ def upload_to_db(file_name):
         ]
     db = connect_db()
     table = db['papeletas']
-    
+
     papeletas_in_db = get_papeletas(table)
     papeletas_in_file = [i['papeleta'] for i in data]
 
