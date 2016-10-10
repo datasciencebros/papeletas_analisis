@@ -10,14 +10,19 @@ from utils import clean_item
 
 
 def filter_items(args):
+    lat_upper = float(args.latitude) + 0.01
+    lat_lower = float(args.latitude) - 0.01
+
+    long_upper = float(args.longitude) + 0.01
+    long_lower = float(args.longitude) - 0.01
     db = connect_db()
     table = db['papeletas']
     res = table.all()
     for item in res:
         if item['latitude'] is not None:
             should_be_done = (
-                item['latitude'] < float(args.latitude) and
-                item['longitude'] > float(args.longitude)
+                lat_lower <= item['latitude'] <= lat_upper and
+                long_lower <= item['longitude'] <= long_upper
             )
             if should_be_done:
                 print(item)

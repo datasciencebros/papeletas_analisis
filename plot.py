@@ -17,7 +17,7 @@ data = table.all()
 data = [
     i
     for i in data
-    if i['latitude'] is not None
+    if i['latitude'] is not None and i['longitude'] < -77.070554
 ]
 points = [
     "new google.maps.LatLng({}, {}),".format(
